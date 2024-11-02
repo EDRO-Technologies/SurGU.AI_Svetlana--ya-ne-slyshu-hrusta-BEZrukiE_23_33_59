@@ -1,0 +1,2 @@
+from fuck import Fuck
+
