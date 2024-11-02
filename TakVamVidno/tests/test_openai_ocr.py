@@ -2,8 +2,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from ..ocr._openai import OpenAIOCR
-from ..ocr.prepare_image import prepare_images
+from ..extractors import OpenAIOCR
+from ..extractors import prepare_images
 
 
 load_dotenv(".env")

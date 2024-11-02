@@ -1,2 +1,2 @@
-from .fuck import Fuck
+from .takvamvidno import TakVamVidno
 from .providers import OpenAIProvider, TransformersProvider

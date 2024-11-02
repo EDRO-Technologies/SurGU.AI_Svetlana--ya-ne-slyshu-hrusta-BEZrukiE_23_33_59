@@ -3,7 +3,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from ..ocr.prepare_image import prepare_images
+from ..extractors import prepare_images
 
 
 def test_prepare_image_from_bytes():
