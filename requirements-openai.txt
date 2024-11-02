@@ -1,2 +1,4 @@
 pillow==11.0.0
 python-dotenv
+
+openai==1.53.0
