@@ -1,3 +1,2 @@
 class TakVamVidnoException(Exception):
     pass
-

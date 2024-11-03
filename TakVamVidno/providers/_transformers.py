@@ -1,6 +1,9 @@
 from .base import Provider
-from transformers import PreTrainedModel
+
 
 class TransformersProvider(Provider):
     def __init__(self, model: str, token: str | None):
+        from transformers import PreTrainedModel
+    
+    def generate_report(self, text: str, messages: list[str]) -> str:
         pass

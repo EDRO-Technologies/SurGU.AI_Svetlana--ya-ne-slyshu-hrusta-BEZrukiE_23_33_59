@@ -16,7 +16,30 @@
 
 ### 👨‍💻 Установка и использование
 
-СДЕЛАТЬ
+#### Установка 
+```bash
+pip install TakVamVidno[openai] @ "git+https://github.com/holy-jesus/TakVamVidno"
+```
+
+Эта команда установить библиотеку TakVamVidno для использования `openai` в качестве распознавания текста с картинки и генерации ответа. 
+
+Возможные варианты: 
+- TakVamVidno[openai]
+- TakVamVidno[tesseract]
+- TakVamVidno[transformers]
+
+#### Использование
+
+Пример использования
+```python
+from TakVamVidno import TVV
+from TakVamVidno.extractors import OpenAIOCR, prepare_images
+from TakVamVidno.providers import OpenAIProvider
+
+tvv = TVV(OpenAIProvider(), OpenAIOCR())
+images = prepare_images(["./image.jpg"])
+tvv.process(None, files=images)
+```
 
 ### 📆 Планы
 

@@ -1,6 +1,5 @@
 from io import BytesIO
 
-from transformers import TrOCRProcessor, VisionEncoderDecoderModel
 from PIL import Image
 
 from .base import OCR
@@ -27,6 +26,7 @@ class TransformersOCR(OCR):
     >>> print(result[0])
     """
     def __init__(self, model: str = "raxtemur/trocr-base-ru"):
+        from transformers import TrOCRProcessor, VisionEncoderDecoderModel
         self._processor = TrOCRProcessor.from_pretrained(model)
         self._model = VisionEncoderDecoderModel.from_pretrained(model)
 

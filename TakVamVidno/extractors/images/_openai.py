@@ -1,8 +1,7 @@
 from base64 import b64encode
 
-from openai import OpenAI as _OpenAI
-
 from .base import OCR
+
 
 SYSTEM = {
     "role": "system",
@@ -47,6 +46,7 @@ class OpenAIOCR(OCR):
         *args,
         **kwargs,
     ):
+        from openai import OpenAI as _OpenAI
         self._model = model
         self._session = _OpenAI(base_url=base_url, *args, **kwargs)
 
