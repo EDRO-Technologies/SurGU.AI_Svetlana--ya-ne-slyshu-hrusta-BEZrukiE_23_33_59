@@ -23,6 +23,9 @@ class TVV:
         images = prepare_images(files)
         text_from_files = self._image_extractor.extract(images)
         if not any(text_from_files):
-            pass
+            return None
         total_text = "\n".join(text for text in text_from_files if text)
         self._provider.generate_report(total_text)
+
+    def _get_chat_messages(self, user_id: str | int):
+        pass

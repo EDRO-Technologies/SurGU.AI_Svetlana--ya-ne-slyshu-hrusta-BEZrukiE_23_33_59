@@ -1,7 +1,10 @@
+import json
+
 from openai import OpenAI as _OpenAI
 
 from .base import Provider
 from .load_prompt import load_prompt
+from visualization.mind_map import MindMap
 
 MAX_RECURSION = 4
 
@@ -36,7 +39,7 @@ class OpenAIProvider(Provider):
         self._model = model
         self._prompt = prompt or load_prompt()
 
-    def generate_report(self, text: str, messages: list[dict] = None) -> tuple[list[dict], str]:
+    def generate_report(self, text: str, messages: list[dict] = None) -> tuple[list[dict], str, bytes]:
         if messages is None:
             messages = [{"role": "system", "content": self._prompt}]
         return self._generate(text, messages)
@@ -81,9 +84,17 @@ class OpenAIProvider(Provider):
         if choice.finish_reason == "stop":
             messages.append({"role": "assistant", "content": choice.message.content})
             print(messages, choice.message.content)
-            return messages, choice.message.content
+            return messages, choice.message.content, None
         elif choice.finish_reason == "tool_calls":
-            print(choice)
+            messages.append(choice.message.to_dict())
+            for tool_call in choice.message.tool_calls:
+                if tool_call.function.name == "mind_map":
+                    arguments = json.loads(tool_call.function.arguments)
+                    subtopics = json.loads(arguments["subtopics"])
+                    image = MindMap().visualize(arguments["main_topic"], subtopics)
+                    return messages, choice.message.content, image
+                else:
+                    raise ValueError(f"Неизвестное имя функции: {tool_call.function.name}")
         else:
             raise ValueError(
                 f"Неизвестная причина завершения генерации: {choice.finish_reason}"
