@@ -4,6 +4,7 @@ plotly==5.24.1
 kaleido==0.2.1
 igraph==0.11.8
 python-magic==0.4.27
+motor==3.6.0
 
 pytest
 transformers @ git+https://github.com/huggingface/transformers@33868a057c02f0368ba63bd1edb746be38fe3d90
