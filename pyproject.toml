@@ -21,11 +21,6 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-
-[project.urls]
-Homepage = "https://github.com/holy-jesus/TakVamVidno"
-Issues = "https://github.com/holy-jesus/TakVamVidno/issues"
-
 dependencies = [
   "pillow==11.0.0",
   "python-dotenv",
@@ -37,8 +32,11 @@ dependencies = [
 ]
 
 
-[project.optional-dependencies]
+[project.urls]
+Homepage = "https://github.com/holy-jesus/TakVamVidno"
+Issues = "https://github.com/holy-jesus/TakVamVidno/issues"
 
+[project.optional-dependencies]
 dev = [
   "pytest",
   "build==1.2.2.post1",
