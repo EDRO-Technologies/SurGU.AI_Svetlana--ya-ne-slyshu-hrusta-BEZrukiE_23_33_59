@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "TakVamVidno"
+version = "0.0.1"
+authors = [
+  { name="holy-jesus", email="hj@holy-coder.ru" },
+  { name="lizzonator" },
+  { name="imnecytortik" }
+]
+description = "Библиотека для лёгкого анализа файлов при помощи ИИ"
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/holy-jesus/TakVamVidno"
+Issues = "https://github.com/holy-jesus/TakVamVidno/issues"

@@ -36,7 +36,7 @@ class OpenAIProvider(Provider):
         self._model = model
         self._prompt = prompt or load_prompt()
 
-    def generate_report(self, text: str, messages: list[dict] = None):
+    def generate_report(self, text: str, messages: list[dict] = None) -> tuple[list[dict], str]:
         if messages is None:
             messages = [{"role": "system", "content": self._prompt}]
         return self._generate(text, messages)

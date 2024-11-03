@@ -1,19 +1,28 @@
 from .extractors.images.base import OCR
 from .extractors.voice.base import STT
-from .extractors import FileType, get_file_type
+from .providers.base import Provider
+from .extractors import FileType, get_file_type, prepare_images
 
 
 class TVV:
     def __init__(
-        self, image_extractor: OCR | None = None, audio_extractor: STT | None = None
+        self, provider: Provider, image_extractor: OCR | None = None, audio_extractor: STT | None = None
     ):
+        self._provider = provider
         self._image_extractor = image_extractor
         self._audio_extractor = audio_extractor
 
-    def process(self, text: str = None, file: list[bytes] = None):
-        if text is None and file is None:
+    def process(self, text: str = None, files: list[bytes] = None):
+        if text is None and files is None:
             raise ValueError("text и file не могут быть одновременно 'None'")
-        file_type = get_file_type(file)
-        if file_type != FileType.Image:
-            # Пока не поддерживается
-            return None
+        for file in files:
+            file_type = get_file_type(file)
+            if file_type != FileType.Image:
+                # Пока не поддерживается
+                raise ValueError("Файл данного типа не поддерживается.")
+        images = prepare_images(files)
+        text_from_files = self._image_extractor.extract(images)
+        if not any(text_from_files):
+            pass
+        total_text = "\n".join(text for text in text_from_files if text)
+        self._provider

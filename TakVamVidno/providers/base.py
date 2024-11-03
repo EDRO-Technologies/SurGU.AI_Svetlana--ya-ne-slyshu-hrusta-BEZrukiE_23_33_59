@@ -1,4 +1,4 @@
 class Provider:
-    def __init__(self):
-        pass
+    def __init__(self): ...
 
+    def generate_report(self, text: str, messages: list[str]) -> str: ...
