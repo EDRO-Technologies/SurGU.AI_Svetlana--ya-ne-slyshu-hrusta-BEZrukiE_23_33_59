@@ -22,3 +22,43 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/holy-jesus/TakVamVidno"
 Issues = "https://github.com/holy-jesus/TakVamVidno/issues"
+
+dependencies = [
+  "pillow==11.0.0",
+  "python-dotenv",
+  "plotly==5.24.1",
+  "kaleido==0.2.1",
+  "igraph==0.11.8",
+  "python-magic==0.4.27",
+  "motor==3.6.0",
+]
+
+
+[project.optional-dependencies]
+
+dev = [
+  "pytest",
+  "build==1.2.2.post1",
+  "openai==1.53.0",
+  "transformers @ git+https://github.com/huggingface/transformers@33868a057c02f0368ba63bd1edb746be38fe3d90",
+  "--index-url https://download.pytorch.org/whl/cpu",
+  "torch==2.5.1+cpu",
+  "torchvision==0.20.1+cpu",
+  "torchaudio==2.5.1+cpu",
+]
+
+openai = [
+  "openai==1.53.0",
+]
+
+tesseract = [
+  "pytesseract==0.3.13",
+]
+
+transformers = [
+  "transformers @ git+https://github.com/huggingface/transformers@33868a057c02f0368ba63bd1edb746be38fe3d90",
+  "--index-url https://download.pytorch.org/whl/cpu",
+  "torch==2.5.1+cpu",
+  "torchvision==0.20.1+cpu",
+  "torchaudio==2.5.1+cpu",
+]

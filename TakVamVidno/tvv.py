@@ -12,7 +12,7 @@ class TVV:
         self._image_extractor = image_extractor
         self._audio_extractor = audio_extractor
 
-    def process(self, text: str = None, files: list[bytes] = None):
+    def process(self, user_id: str | int, text: str = None, files: list[bytes] = None):
         if text is None and files is None:
             raise ValueError("text и file не могут быть одновременно 'None'")
         for file in files:
@@ -25,4 +25,4 @@ class TVV:
         if not any(text_from_files):
             pass
         total_text = "\n".join(text for text in text_from_files if text)
-        self._provider
+        self._provider.generate_report(total_text)
