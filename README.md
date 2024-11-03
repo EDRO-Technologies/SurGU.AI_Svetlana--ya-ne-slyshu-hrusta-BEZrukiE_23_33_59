@@ -45,3 +45,4 @@ tvv.process(None, files=images)
 
 - Дописать `README.md` :)
 - Дописать план :))
+- Победить
