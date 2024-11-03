@@ -45,11 +45,12 @@ class OpenAIProvider(Provider):
         return self._generate(text, messages)
 
     def _generate(
-        self, text: str, messages: list[dict], recursion: int = None
+        self, text: str, messages: list[dict], recursion: int = None, image: bytes | None = None
     ) -> tuple[list[dict], str, bytes]:
         if recursion is None:
             recursion = 0
             messages.append({"role": "user", "content": text})
+        recursion += 1
         response = self._session.chat.completions.create(
             model=self._model,
             messages=messages,
@@ -84,7 +85,7 @@ class OpenAIProvider(Provider):
         if choice.finish_reason == "stop":
             messages.append({"role": "assistant", "content": choice.message.content})
             print(messages, choice.message.content)
-            return messages, choice.message.content, None
+            return messages, choice.message.content, image
         elif choice.finish_reason == "tool_calls":
             messages.append(choice.message.to_dict())
             for tool_call in choice.message.tool_calls:
@@ -92,7 +93,13 @@ class OpenAIProvider(Provider):
                     arguments = json.loads(tool_call.function.arguments)
                     subtopics = json.loads(arguments["subtopics"])
                     image = MindMap().visualize(arguments["main_topic"], subtopics)
-                    return messages, choice.message.content, image
+                    messages.append({
+                        "role": "tool",
+                        "content": "Success",
+                        "tool_call_id": tool_call.id,
+                    })
+                    return self._generate(text, messages, recursion, image)
+                    # return messages, choice.message.content, image
                 else:
                     raise ValueError(f"Неизвестное имя функции: {tool_call.function.name}")
         else:
