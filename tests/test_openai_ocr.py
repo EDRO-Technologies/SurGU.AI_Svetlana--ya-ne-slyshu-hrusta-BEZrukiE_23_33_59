@@ -2,8 +2,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from ..extractors import OpenAIOCR
-from ..extractors import prepare_images
+from TakVamVidno.extractors import OpenAIOCR
+from TakVamVidno.extractors import prepare_images
 
 
 load_dotenv(".env")
