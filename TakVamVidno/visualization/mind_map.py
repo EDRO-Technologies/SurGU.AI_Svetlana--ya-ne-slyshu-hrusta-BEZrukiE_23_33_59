@@ -153,6 +153,7 @@ class MindMap:
             connections.append((main_topic, subtopic))
             labels.append(subtopic)
             for detail in details:
+                detail = detail + str(len(labels))
                 connections.append((subtopic, detail))
                 labels.append(detail)
         return len(labels), connections, labels

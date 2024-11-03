@@ -10,9 +10,7 @@ class FileType(Enum):
 
 
 def get_file_type(file: bytes) -> FileType:
-    mime = magic.Magic(mime=True)
-
-    file_type = mime.from_buffer(file)
+    file_type = magic.from_buffer(file, mime=True)
     if file_type.startswith("image"):
         return FileType.Image
     elif file_type.startswith("audio"):

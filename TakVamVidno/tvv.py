@@ -1,6 +1,6 @@
 import os
 
-from motor.motor_asyncio import AsyncIOMotorClient
+from pymongo import MongoClient
 
 from .extractors.images.base import OCR
 from .extractors.voice.base import STT
@@ -12,7 +12,7 @@ class TVV:
     def __init__(
         self, provider: Provider, image_extractor: OCR | None = None, audio_extractor: STT | None = None
     ):
-        self._db = AsyncIOMotorClient(host=os.getenv("MONGODB_HOST"), port=os.getenv("MONGODB_PORT"), username=os.getenv("MONGODB_USERNAME"), password=os.getenv("MONGODB_PASSWORD"))
+        self._db = MongoClient(host=os.getenv("MONGODB_HOST"), port=os.getenv("MONGODB_PORT"), username=os.getenv("MONGODB_USERNAME"), password=os.getenv("MONGODB_PASSWORD"))["TakVamVidno"]
         self._provider = provider
         self._image_extractor = image_extractor
         self._audio_extractor = audio_extractor
@@ -30,7 +30,14 @@ class TVV:
         if not any(text_from_files):
             return None
         total_text = "\n".join(text for text in text_from_files if text)
-        self._provider.generate_report(total_text)
+        messages = self._get_chat_messages(user_id)
+        messages, text, image = self._provider.generate_report(total_text, messages)
+        # self._set_chat_messages(user_id, messages)
+        return text, image
+
 
     def _get_chat_messages(self, user_id: str | int):
-        pass
+        return self._db.messages.find_one({"_id": user_id})
+
+    def _set_chat_messages(self, user_id: str | int, messages: list[dict]):
+        return self._db.messages.update_one({"_id":user_id}, {"$set": messages})
