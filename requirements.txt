@@ -3,3 +3,4 @@ python-dotenv
 plotly==5.24.1
 kaleido==0.2.1
 igraph==0.11.8
+python-magic==0.4.27
