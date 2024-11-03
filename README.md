@@ -18,7 +18,7 @@
 
 #### Установка 
 ```bash
-pip install TakVamVidno[openai] @ "git+https://github.com/holy-jesus/TakVamVidno"
+pip install "TakVamVidno[openai] @ git+https://github.com/holy-jesus/TakVamVidno"
 ```
 
 Эта команда установить библиотеку TakVamVidno для использования `openai` в качестве распознавания текста с картинки и генерации ответа. 
@@ -38,7 +38,7 @@ from TakVamVidno.providers import OpenAIProvider
 
 tvv = TVV(OpenAIProvider(), OpenAIOCR())
 images = prepare_images(["./image.jpg"])
-tvv.process(None, files=images)
+print(tvv.process(None, files=images))
 ```
 
 ### 📆 Планы
