@@ -22,13 +22,13 @@ class OpenAIOCR(OCR):
     Рекомендуемые модели:
         - `gpt-4o-mini` (дешевле, но чуть хуже качество)
         - `gpt-4o` (дороже, но лучше качество)
-    
+
     Полный список моделей: https://platform.openai.com/docs/models/model-endpoint-compatibility
 
     Argumemnts
     ----------
     model : str
-        ID модели для распознавания 
+        ID модели для распознавания
     base_url : str | None
         Адрес альтернативного сервера OpenAI API
 
@@ -39,6 +39,7 @@ class OpenAIOCR(OCR):
     >>> result = ocr.extract(prepare_images(["./image.jpg"]))
     >>> print(result[0])
     """
+
     def __init__(
         self,
         model: str = "gpt-4o-mini",
