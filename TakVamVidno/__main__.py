@@ -1,1 +1,1 @@
-from takvamvidno import TakVamVidno
+from tvv import TVV

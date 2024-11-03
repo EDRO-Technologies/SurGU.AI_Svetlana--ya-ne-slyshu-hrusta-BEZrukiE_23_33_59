@@ -1,2 +1,2 @@
-from .takvamvidno import TakVamVidno
+from .tvv import TVV
 from .providers import OpenAIProvider, TransformersProvider
