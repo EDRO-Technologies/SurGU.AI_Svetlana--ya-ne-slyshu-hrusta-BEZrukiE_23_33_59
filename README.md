@@ -1,5 +1,8 @@
 ## 👀 Так вам видно
 
+![Так вам видно](https://github.com/user-attachments/assets/f05c1e85-727d-4005-9a8d-676914dabcd1)
+
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Библиотека для анализа документов и записей разговоров при помощи ИИ.
