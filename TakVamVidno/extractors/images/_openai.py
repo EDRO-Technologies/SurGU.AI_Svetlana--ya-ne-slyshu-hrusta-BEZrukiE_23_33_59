@@ -27,8 +27,8 @@ class OpenAIOCR(OCR):
 
     Argumemnts
     ----------
-    model : str
-        ID модели для распознавания
+    model : str : "gpt-4o-mini"
+        ID модели для распознавания. `gpt-4o-mini` по умолчанию.
     base_url : str | None
         Адрес альтернативного сервера OpenAI API
 
