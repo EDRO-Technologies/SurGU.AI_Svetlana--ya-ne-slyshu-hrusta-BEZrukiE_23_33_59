@@ -44,7 +44,6 @@ dev = [
   "build==1.2.2.post1",
   "openai==1.53.0",
   "transformers @ git+https://github.com/huggingface/transformers@33868a057c02f0368ba63bd1edb746be38fe3d90",
-  "--index-url https://download.pytorch.org/whl/cpu",
   "torch==2.5.1+cpu",
   "torchvision==0.20.1+cpu",
   "torchaudio==2.5.1+cpu",
@@ -60,7 +59,6 @@ tesseract = [
 
 transformers = [
   "transformers @ git+https://github.com/huggingface/transformers@33868a057c02f0368ba63bd1edb746be38fe3d90",
-  "--index-url https://download.pytorch.org/whl/cpu",
   "torch==2.5.1+cpu",
   "torchvision==0.20.1+cpu",
   "torchaudio==2.5.1+cpu",
