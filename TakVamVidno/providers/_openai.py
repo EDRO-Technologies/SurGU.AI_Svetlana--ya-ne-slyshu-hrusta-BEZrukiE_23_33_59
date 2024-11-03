@@ -1,10 +1,9 @@
 import json
 
-from openai import OpenAI as _OpenAI
 
 from .base import Provider
 from .load_prompt import load_prompt
-from visualization.mind_map import MindMap
+from ..visualization.mind_map import MindMap
 
 MAX_RECURSION = 4
 
@@ -35,6 +34,7 @@ class OpenAIProvider(Provider):
         base_url: str | None = None,
         prompt: str | None = None,
     ):
+        from openai import OpenAI as _OpenAI
         self._session = _OpenAI(base_url=base_url)
         self._model = model
         self._prompt = prompt or load_prompt()
