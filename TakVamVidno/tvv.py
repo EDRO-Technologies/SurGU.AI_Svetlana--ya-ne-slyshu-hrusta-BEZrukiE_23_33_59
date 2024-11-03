@@ -1,3 +1,7 @@
+import os
+
+from motor.motor_asyncio import AsyncIOMotorClient
+
 from .extractors.images.base import OCR
 from .extractors.voice.base import STT
 from .providers.base import Provider
@@ -8,6 +12,7 @@ class TVV:
     def __init__(
         self, provider: Provider, image_extractor: OCR | None = None, audio_extractor: STT | None = None
     ):
+        self._db = AsyncIOMotorClient(host=os.getenv("MONGODB_HOST"), port=os.getenv("MONGODB_PORT"), username=os.getenv("MONGODB_USERNAME"), password=os.getenv("MONGODB_PASSWORD"))
         self._provider = provider
         self._image_extractor = image_extractor
         self._audio_extractor = audio_extractor

@@ -13,8 +13,8 @@ class OpenAIProvider(Provider):
     Класс, который подводит анализирует полученный текст.
 
     Рекомендуемые модели:
-        - `gpt-4o-mini` (дешевле, быстрее, но чуть хуже качество)
-        - `gpt-4o` (дороже, медленее, но лучше качество)
+        - `gpt-4o-mini` (дешевле, быстрее, чуть хуже качество)
+        - `gpt-4o` (дороже, медленее, лучше качество)
 
     Полный список моделей: https://platform.openai.com/docs/models/model-endpoint-compatibility
 
@@ -46,7 +46,7 @@ class OpenAIProvider(Provider):
 
     def _generate(
         self, text: str, messages: list[dict], recursion: int = None
-    ) -> tuple[list[dict], str]:
+    ) -> tuple[list[dict], str, bytes]:
         if recursion is None:
             recursion = 0
             messages.append({"role": "user", "content": text})
